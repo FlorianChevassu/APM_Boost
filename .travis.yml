@@ -9,6 +9,6 @@ script:
 - mkdir build
 - cd build
 - $cmakeBin ..
-- make
+- make 
 
 os: linux
