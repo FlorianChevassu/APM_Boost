@@ -27,7 +27,7 @@ project (BoostTestProject)
 # set(Boost_DEBUG 1)
 #
 # include(${CMAKE_CURRENT_BINARY_DIR}/APM/APM-master/APM.cmake)
-include(../../APM/APM.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/../../APM/APM.cmake)
 #force installation of boost...
 set(APM_install_Boost ON CACHE BOOL "")
 
