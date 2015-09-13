@@ -1,33 +1,34 @@
 cmake_minimum_required (VERSION 3.0.0)
 project (BoostTestProject)
 
-file(DOWNLOAD "https://github.com/FlorianChevassu/APM/archive/master.zip" ${CMAKE_CURRENT_BINARY_DIR}/APM.zip STATUS download_status SHOW_PROGRESS)
-list(GET download_status 0 download_status_value)
-if(NOT download_status_value EQUAL 0)
-  message(FATAL_ERROR "Error while downloading APM.")
-else()
-  message(STATUS "APM downloaded.")
-endif()
-
-set(APM_dir ${CMAKE_CURRENT_BINARY_DIR}/APM)
-file(MAKE_DIRECTORY ${APM_dir})
-
-
-execute_process(COMMAND ${CMAKE_COMMAND} -E tar xfz ${CMAKE_CURRENT_BINARY_DIR}/APM.zip
-  WORKING_DIRECTORY ${APM_dir}
-RESULT_VARIABLE extract_result)
-if(NOT extract_result EQUAL 0)
-  message(FATAL_ERROR "Error extracting APM.zip.")
-else()
-    message(STATUS "APM.zip successfully extracted.")
-endif()
-
-
-set(APM_DEBUG 1)
-set(Boost_DEBUG 1)
-
-include(${CMAKE_CURRENT_BINARY_DIR}/APM/APM-master/APM.cmake)
-#force installation of eigen...
+# file(DOWNLOAD "https://github.com/FlorianChevassu/APM/archive/master.zip" ${CMAKE_CURRENT_BINARY_DIR}/APM.zip STATUS download_status SHOW_PROGRESS)
+# list(GET download_status 0 download_status_value)
+# if(NOT download_status_value EQUAL 0)
+#   message(FATAL_ERROR "Error while downloading APM.")
+# else()
+#   message(STATUS "APM downloaded.")
+# endif()
+#
+# set(APM_dir ${CMAKE_CURRENT_BINARY_DIR}/APM)
+# file(MAKE_DIRECTORY ${APM_dir})
+#
+#
+# execute_process(COMMAND ${CMAKE_COMMAND} -E tar xfz ${CMAKE_CURRENT_BINARY_DIR}/APM.zip
+#   WORKING_DIRECTORY ${APM_dir}
+# RESULT_VARIABLE extract_result)
+# if(NOT extract_result EQUAL 0)
+#   message(FATAL_ERROR "Error extracting APM.zip.")
+# else()
+#     message(STATUS "APM.zip successfully extracted.")
+# endif()
+#
+#
+# set(APM_DEBUG 1)
+# set(Boost_DEBUG 1)
+#
+# include(${CMAKE_CURRENT_BINARY_DIR}/APM/APM-master/APM.cmake)
+include(../../APM/APM.cmake)
+#force installation of boost...
 set(APM_install_Boost ON CACHE BOOL "")
 
 add_executable(BoostTest BoostTest.cpp)
