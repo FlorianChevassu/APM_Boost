@@ -6,8 +6,6 @@ install:
 - wget -qO- http://www.cmake.org/files/v3.3/cmake-3.3.0-Linux-x86_64.tar.gz | tar xvz
 - export cmakeBin=$(pwd)/cmake-3.3.0-Linux-x86_64/bin/cmake
 - git clone https://github.com/FlorianChevassu/APM.git
-- echo "APM installed in :"
-- echo $(pwd)
 - cd APM_Boost
 script:
 - cd APM_Boost
