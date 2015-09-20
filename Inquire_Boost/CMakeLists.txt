@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 3.0.0)
 project (BoostTestProject)
 
-include(${CMAKE_CURRENT_LIST_DIR}/../../Inquire/inquire.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/../../Inquire/Inquire.cmake)
 
 #force installation of boost...
 set(IPM_install_Boost ON CACHE BOOL "")
