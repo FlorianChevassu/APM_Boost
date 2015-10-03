@@ -1,0 +1,2 @@
+set(Boost_COMPATIBLE TRUE)
+set(Boost_COMPATIBILITY_DETAILS "")

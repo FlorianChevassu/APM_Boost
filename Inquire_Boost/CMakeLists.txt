@@ -4,11 +4,12 @@ project (BoostTestProject)
 include(${CMAKE_CURRENT_LIST_DIR}/../../Inquire/Inquire.cmake)
 
 #force installation of boost...
-set(IPM_install_Boost ON CACHE BOOL "")
+set(INSTALL_Boost ON CACHE BOOL "")
+set(IPM_LOG_LEVEL_ALL ON)
 
 add_executable(BoostTest BoostTest.cpp)
 # an IPM module repository is a place (folder, GIT repo, etc.) containing CMake modules to "require" projects.
-inquire_add_module_repository(moduleRepo FOLDER "${CMAKE_CURRENT_SOURCE_DIR}/../")
+inquire_add_module_repository(moduleRepo FOLDER "${CMAKE_CURRENT_SOURCE_DIR}/../../")
 
 # an IPM package repository contains all the built libraries and sources.
 inquire_add_package_repository(packageRepo FOLDER "${CMAKE_CURRENT_BINARY_DIR}/packages/")
