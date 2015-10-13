@@ -1,5 +1,5 @@
 #First check if the package needs to be compiled
-IPM_get_subdirectories(${IPM_PACKAGE_VERSION_ROOT}/source l_IPM_version)
+IPM_get_subdirectories(${Boost_PACKAGE_VERSION_ROOT}/source l_IPM_version)
 
 string(REPLACE "boost_" "" l_IPM_version ${l_IPM_version})
 string(REPLACE "_" ";" l_IPM_version_list ${l_IPM_version})
@@ -7,17 +7,17 @@ list(GET l_IPM_version_list 0 l_IPM_boost_major)
 list(GET l_IPM_version_list 1 l_IPM_boost_minor)
 list(GET l_IPM_version_list 2 l_IPM_boost_patch)
 
-set(l_IPM_source_path ${IPM_PACKAGE_VERSION_ROOT}/source/boost_${l_IPM_boost_major}_${l_IPM_boost_minor}_${l_IPM_boost_patch})
+set(l_IPM_source_path ${Boost_PACKAGE_VERSION_ROOT}/source/boost_${l_IPM_boost_major}_${l_IPM_boost_minor}_${l_IPM_boost_patch})
 
-set(l_IPM_install_path ${IPM_PACKAGE_VERSION_ROOT}/install/${IPM_COMPILER_ID})
+set(l_IPM_install_path ${Boost_PACKAGE_VERSION_ROOT}/install/${IPM_COMPILER_ID})
 
 set(BOOST_ROOT ${l_IPM_install_path})
 #set the BOOST_INCLUDEDIR variable to help FindBoost to actually find boost headers...
 set(BOOST_INCLUDEDIR ${l_IPM_install_path}/include/boost-${l_IPM_boost_major}_${l_IPM_boost_minor})
 set(BOOST_LIBRARYDIR  ${l_IPM_install_path}/lib)
 
-if(DEFINED IPM_COMPONENTS)
-	find_package(Boost COMPONENTS ${IPM_COMPONENTS} MODULE QUIET)
+if(DEFINED Boost_COMPONENTS)
+	find_package(Boost COMPONENTS ${Boost_COMPONENTS} MODULE QUIET)
 else()
 	find_package(Boost MODULE QUIET)
 endif()
@@ -32,17 +32,17 @@ endif()
 if(${l_IPM_need_compilation})
 	inquire_message(INFO "Triggering compilation of Boost...")
 
-	set(BOOST_ROOT ${IPM_PACKAGE_VERSION_ROOT}/source)
+	set(BOOST_ROOT ${Boost_PACKAGE_VERSION_ROOT}/source)
 
-	IPM_get_subdirectories(${IPM_PACKAGE_VERSION_ROOT}/source l_IPM_version)
+	IPM_get_subdirectories(${Boost_PACKAGE_VERSION_ROOT}/source l_IPM_version)
 	string(REPLACE "boost_" "" l_IPM_version ${l_IPM_version})
 	string(REPLACE "_" ";" l_IPM_version_list ${l_IPM_version})
 	list(GET l_IPM_version_list 0 l_IPM_boost_major)
 	list(GET l_IPM_version_list 1 l_IPM_boost_minor)
 	list(GET l_IPM_version_list 2 l_IPM_boost_patch)
 
-	set(l_IPM_source_path ${IPM_PACKAGE_VERSION_ROOT}/source/boost_${l_IPM_boost_major}_${l_IPM_boost_minor}_${l_IPM_boost_patch})
-	set(l_IPM_install_path ${IPM_PACKAGE_VERSION_ROOT}/install/${IPM_COMPILER_ID})
+	set(l_IPM_source_path ${Boost_PACKAGE_VERSION_ROOT}/source/boost_${l_IPM_boost_major}_${l_IPM_boost_minor}_${l_IPM_boost_patch})
+	set(l_IPM_install_path ${Boost_PACKAGE_VERSION_ROOT}/install/${IPM_COMPILER_ID})
 
 	#-----------------------------------------------------#
 	#-                    BOOTSTRAP                      -#
@@ -79,13 +79,13 @@ if(${l_IPM_need_compilation})
 	#-                    BUILD                      -#
 	#-------------------------------------------------#
 
-  inquire_message(DEBUG "IPM_COMPONENTS = ${IPM_COMPONENTS}")
-	if(DEFINED IPM_COMPONENTS)
+  inquire_message(DEBUG "Boost_COMPONENTS = ${Boost_COMPONENTS}")
+	if(DEFINED Boost_COMPONENTS)
 		IPM_compute_toolset(l_IPM_toolset)
 		inquire_message(INFO "Building Boost components with toolset ${l_IPM_toolset}...")
 		#TODO : Add the possibility to launch parallel compilation
 		set(l_IPM_B2_call_string  ${l_IPM_B2} install --toolset=${l_IPM_toolset} -j1 --layout=versioned --build-type=complete -d0 --prefix=${l_IPM_install_path})
-		foreach(l_IPM_component ${IPM_COMPONENTS})
+		foreach(l_IPM_component ${Boost_COMPONENTS})
 			set(l_IPM_B2_call_string ${l_IPM_B2_call_string} --with-${l_IPM_component})
 		endforeach()
 
