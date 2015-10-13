@@ -34,4 +34,4 @@ else()
   inquire_message(INFO "Extracting Boost ${Boost_VERSION}... DONE.")
 endif()
 
-set(IPM_PACKAGE_VERSION_ROOT ${l_IPM_Boost_local_dir})
+set(Boost_PACKAGE_VERSION_ROOT ${l_IPM_Boost_local_dir})
